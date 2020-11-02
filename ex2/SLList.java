@@ -81,7 +81,38 @@ public class SLList{
   }
 
 
+//we can not use recursion to create a non-static size method,but we can use static method to help us.
+
+
+
+  public static int size(IntNode m){
+
+      
+          if(m.ref==null){
+
+
+          		return 1;
+
+          }
+
+        
+        return 1+size(m.ref);
+
+
+  }
+
   public int size(){
+
+    return size(first);
+
+
+
+
+  }
+
+  
+//the size method that i created with iterate 
+  /*public int size(){
 
        int s=0;
        IntNode temp=first;
@@ -99,7 +130,7 @@ public class SLList{
   
  			return s;
   }
-
+*/
 
 
 
