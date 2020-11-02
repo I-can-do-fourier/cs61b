@@ -57,7 +57,7 @@ public class SLList2{
   public SLList2(){
 
      
-     sentinel.ref=new IntNode(7,null);
+     sentinel=new IntNode(7,null);
 
      //first=null;
      size=0;
@@ -119,7 +119,7 @@ public class SLList2{
 
       
 
-  	  IntNode temp=sentinel.ref;
+  	  IntNode temp=sentinel;
 
   	  //when use the second constructor(create the empty list),it will have a bug when use this 
 
@@ -134,13 +134,13 @@ public class SLList2{
 
   	  temp.ref=new IntNode(x,temp.ref);
 */
-  	  	while(temp!=null){
+  	  	while(temp.ref!=null){
 
             temp=temp.ref;
 
   	  	}
 
-  	  	temp=new IntNode(x,temp);
+  	  	temp.ref=new IntNode(x,null);
 
   	  size++;
 
@@ -209,44 +209,61 @@ public class SLList2{
   	}
 
 
+    public void deleteFirst(){
+
+
+        sentinel.ref=sentinel.ref.ref;
+
+        size--;
+
+
+    }
+
+
 
               			public static void main(String[] arg){
 
 
-                    					SLList s=new SLList(10);
+                    			SLList s=new SLList(10);
 
-                                      s.addFirst(5);
+                          s.addFirst(5);
 
-                                      System.out.println(s.getFirst());
+                          System.out.println(s.getFirst());
                                       
-                                      s.addLast(20);
+                          s.addLast(20);
 
-                                      System.out.println(s.getFirst());
+                          System.out.println(s.getFirst());
 
-                                      System.out.println(s.size());
+                          System.out.println(s.size());
 
               						System.out.println(s.getSize());
 
               						System.out.println("\n\n");
 
 
-              						SLList b=new SLList();
+              						SLList2 b=new SLList2();
                                       
 
-                                      b.addLast(1);
-                                      b.addLast(20);
-                                      b.addFirst(5);
+                          b.addLast(1);
+                          b.addLast(20);
+                          b.addFirst(5);
 
-                                      //System.out.println(b.getFirst());
+                          //System.out.println(b.getFirst());
                                       
                                      
-                                      System.out.println(b.getSize());
+                          System.out.println(b.getSize());
+
+
+                          b.deleteFirst();
+                          
+                          System.out.println(b.getSize());
+
+                          System.out.println(b.getFirst());
 
 
 
 
-
-			                      }
+			           }
 
 
 }
