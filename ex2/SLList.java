@@ -41,6 +41,71 @@ public class SLList{
 
 
 
+ /* public int addLast(int x){
+
+  	IntNode temp=first;
+
+   if(temp.ref==null){
+
+      
+		temp.ref=new IntNode(x,null);
+        return temp.value;
+     
+
+   }
+
+          temp=temp.ref;
+
+          return temp.addLast(x);
+
+  }*/
+
+
+
+
+  //iterate version
+
+  public void addLast(int x){
+
+  	  IntNode temp=first;
+
+  	  while(temp.ref!=null){
+
+         temp=temp.ref;
+
+
+  	  }
+
+  	  temp.ref=new IntNode(x,temp.ref);
+
+  }
+
+
+  public int size(){
+
+       int s=0;
+       IntNode temp=first;
+
+  	  while(temp.ref!=null){
+
+  	  	      temp=temp.ref;
+
+              s++;
+
+
+  	  }
+
+  	         s++;
+  
+ 			return s;
+  }
+
+
+
+
+
+
+
 
 			public static void main(String[] arg){
 
@@ -50,6 +115,14 @@ public class SLList{
                         s.addFirst(5);
 
                         System.out.println(s.getFirst());
+                        
+                        s.addLast(20);
+
+                        System.out.println(s.getFirst());
+
+                        System.out.println(s.size());
+
+
 
 			}
 
