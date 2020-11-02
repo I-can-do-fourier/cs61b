@@ -1,3 +1,8 @@
+
+
+//level b
+
+
 public class SLList2{
 
    //use to prevent the modification from users;
@@ -65,6 +70,27 @@ public class SLList2{
 
   }
 
+
+
+  public SLList2(int[] list){
+
+    
+     sentinel=new IntNode(7,null);
+
+     size=0;
+     
+     for(int i:list){
+
+
+         this.addFirst(i);
+
+
+     }
+
+     
+
+
+  }
    
    public void addFirst(int x){
 
@@ -261,6 +287,17 @@ public class SLList2{
                           System.out.println(b.getFirst());
 
 
+
+
+                          System.out.println("\n\n");
+
+
+
+                          SLList2 c=new SLList2(new int[]{1,2,3});
+
+                          System.out.println(c.getSize());
+
+                          System.out.println(c.getFirst());
 
 
 			           }
