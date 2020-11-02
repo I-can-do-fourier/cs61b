@@ -143,7 +143,13 @@ public class SLList2{
   public void addLast(int x){
 
 
-      
+      //IntNode temp=sentinel.ref;    
+
+      //......
+
+      //temp=new IntNode(x,null);   
+
+      //do not use the sentences above,it will cause a bug
 
   	  IntNode temp=sentinel;
 

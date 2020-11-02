@@ -1,3 +1,8 @@
+
+
+//single linked list
+
+
 public class SLList{
 
    //use to prevent the modification from users;
