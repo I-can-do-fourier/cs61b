@@ -1,4 +1,4 @@
-public class SLList{
+public class SLList2{
 
    //use to prevent the modification from users;
 
@@ -6,12 +6,36 @@ public class SLList{
 
 
    //use private to prevent the modification from users;
+
+
+//nested class
+                              private static class IntNode{
+
+                                  public int value;
+                                  public IntNode ref;
+
+
+                                  public IntNode(int a, IntNode b){
+
+                                       value=a;
+                                       ref=b;
+
+
+
+                                  }
+
+
+
+
+}
+
+
    private IntNode first;
 
 
    private int size=1;
 
-   public SLList(int x){
+   public SLList2(int x){
 
 
 
@@ -24,7 +48,7 @@ public class SLList{
 
 
   //the constructor that can create an empty IntNode.
-  public SLList(){
+  public SLList2(){
 
      first=null;
      size=0;
@@ -174,64 +198,45 @@ public class SLList{
 
 
 
-			public static void main(String[] arg){
+              			public static void main(String[] arg){
 
 
-      					SLList s=new SLList(10);
+                    					SLList s=new SLList(10);
 
-                        s.addFirst(5);
+                                      s.addFirst(5);
 
-                        System.out.println(s.getFirst());
-                        
-                        s.addLast(20);
+                                      System.out.println(s.getFirst());
+                                      
+                                      s.addLast(20);
 
-                        System.out.println(s.getFirst());
+                                      System.out.println(s.getFirst());
 
-                        System.out.println(s.size());
+                                      System.out.println(s.size());
 
-						System.out.println(s.getSize());
+              						System.out.println(s.getSize());
 
-						System.out.println("\n\n");
-
-
-						SLList b=new SLList();
-                        
-
-                        b.addLast(1);
-                        b.addLast(20);
-                        b.addFirst(5);
-
-                        //System.out.println(b.getFirst());
-                        
-                       
-                        System.out.println(b.getSize());
+              						System.out.println("\n\n");
 
 
+              						SLList b=new SLList();
+                                      
 
+                                      b.addLast(1);
+                                      b.addLast(20);
+                                      b.addFirst(5);
 
-
-			}
-
-
-}
-
-
-class IntNode{
-
-    public int value;
-    public IntNode ref;
-
-
-    public IntNode(int a, IntNode b){
-
-         value=a;
-         ref=b;
+                                      //System.out.println(b.getFirst());
+                                      
+                                     
+                                      System.out.println(b.getSize());
 
 
 
-    }
 
 
+			                      }
 
 
 }
+
+
