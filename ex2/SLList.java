@@ -9,6 +9,8 @@ public class SLList{
    private IntNode first;
 
 
+   private int size=1;
+
    public SLList(int x){
 
 
@@ -18,14 +20,22 @@ public class SLList{
 
 
    }
+  
+  public SLList(){
 
+     first=null;
+     size=0;
+
+
+  }
 
    
    public void addFirst(int x){
 
        
        first=new IntNode(x,first);
-
+       
+       size++;
 
 
    }
@@ -67,9 +77,16 @@ public class SLList{
 
   public void addLast(int x){
 
+
+      
+
   	  IntNode temp=first;
 
-  	  while(temp.ref!=null){
+  	  //when use the second constructor(create the empty list),it will have a bug when use this 
+
+  	  //ethod just after the assignment.
+
+  	 /* while(temp.ref!=null){
 
          temp=temp.ref;
 
@@ -77,6 +94,16 @@ public class SLList{
   	  }
 
   	  temp.ref=new IntNode(x,temp.ref);
+*/
+  	  	while(temp!=null){
+
+            temp=temp.ref;
+
+  	  	}
+
+  	  	temp=new IntNode(x,temp);
+
+  	  size++;
 
   }
 
@@ -110,6 +137,7 @@ public class SLList{
 
   }
 
+
   
 //the size method that i created with iterate 
   /*public int size(){
@@ -134,7 +162,12 @@ public class SLList{
 
 
 
+  	public int getSize(){
 
+ 				return size;
+
+
+  	}
 
 
 
@@ -152,6 +185,25 @@ public class SLList{
                         System.out.println(s.getFirst());
 
                         System.out.println(s.size());
+
+						System.out.println(s.getSize());
+
+						System.out.println("\n\n");
+
+
+						SLList b=new SLList();
+                        
+
+                        b.addLast(1);
+                        b.addLast(20);
+                        b.addFirst(5);
+
+                        //System.out.println(b.getFirst());
+                        
+                       
+                        System.out.println(b.getSize());
+
+
 
 
 
