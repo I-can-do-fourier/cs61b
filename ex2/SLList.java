@@ -20,7 +20,10 @@ public class SLList{
 
 
    }
-  
+
+
+
+  //the constructor that can create an empty IntNode.
   public SLList(){
 
      first=null;

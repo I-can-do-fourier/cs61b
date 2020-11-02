@@ -33,13 +33,19 @@ public class SLList2{
    private IntNode first;
 
 
+  private IntNode sentinel;
+
+
    private int size=1;
 
    public SLList2(int x){
 
+    
+      sentinel=new IntNode(7,null);
+      
+      sentinel.ref=new IntNode(x,null);
 
-
-   		first=new IntNode(x,null);
+   		//first=new IntNode(x,null);
 
 
 
@@ -50,7 +56,10 @@ public class SLList2{
   //the constructor that can create an empty IntNode.
   public SLList2(){
 
-     first=null;
+     
+     sentinel.ref=new IntNode(7,null);
+
+     //first=null;
      size=0;
 
 
@@ -59,8 +68,10 @@ public class SLList2{
    
    public void addFirst(int x){
 
+
+        
        
-       first=new IntNode(x,first);
+       sentinel.ref=new IntNode(x,sentinel.ref);
        
        size++;
 
@@ -70,8 +81,9 @@ public class SLList2{
 
   public int getFirst(){
 
+      
 
-       return first.value;
+       return sentinel.ref.value;
 
 
   }
@@ -107,7 +119,7 @@ public class SLList2{
 
       
 
-  	  IntNode temp=first;
+  	  IntNode temp=sentinel.ref;
 
   	  //when use the second constructor(create the empty list),it will have a bug when use this 
 
