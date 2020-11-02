@@ -109,6 +109,18 @@ public class IntList {
     	
     }
 
+
+   //尝试添加add方法,不能赋值给this
+
+    /*public void add(int x){
+
+     IntList temp=this;
+     temp = new IntList(x, temp);
+     
+     this=temp;
+    
+    }*/
+
     public static void main(String[] args) {
         IntList L = new IntList(15, null);
         L = new IntList(10, L);
@@ -118,6 +130,12 @@ public class IntList {
 
         System.out.println(L.get(2));
         System.out.println(L.get1(2));
+
+
+        IntList Q = new IntList(15, null);
+        //Q.add(5);
+        System.out.println(Q.get(0));
+        //System.out.println(Q.get(1));
 
     }
 } 
