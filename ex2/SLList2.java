@@ -37,7 +37,7 @@ public class SLList2{
 
    private IntNode first;
 
-
+  // avoid the trouble when creating the empty list;
   private IntNode sentinel;
 
 
