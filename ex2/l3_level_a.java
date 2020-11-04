@@ -54,6 +54,8 @@ public class l3_level_a{
 					Piece[][] p_groupbylat=new Piece[3][];
                     p_groupbylat=Piece.groupByLat(p);
 
+                    Piece.sortbylat(p_groupbylat);
+
                     for(Piece[] t:p_groupbylat){
 
 
@@ -178,15 +180,37 @@ public static void sortbylat(Piece[][] p){
 
 
 
-    w=p.length
+    int w=p.length;
 
       for(int j=0;j<3;j++){
 
            
-           for(int i;i<w-1;i++){
+           for(int i=0;i<w-1;i++){
 
 
-               if(p[i][j]>p[i+1][j]){
+           	  for(int t=i+1;t<w;t++){
+
+
+                 if(p[t][j].lat<p[i][j].lat){
+
+                        
+                    Piece temp=null;
+
+                    temp=p[i][j];
+                    p[i][j]=p[t][j];
+                    p[t][j]=temp;
+
+
+               }
+                    
+
+
+
+
+           	  }
+
+
+               /*if(p[i][j]>p[i+1][j]){
 
                         
                     Piece temp=null;
@@ -196,7 +220,7 @@ public static void sortbylat(Piece[][] p){
                     p[i+1]=temp;
 
 
-               }
+               }*/
 
 
 
