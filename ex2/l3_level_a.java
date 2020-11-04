@@ -55,6 +55,7 @@ public class l3_level_a{
                     p_groupbylat=Piece.groupByLat(p);
 
                     Piece.sortbylat(p_groupbylat);
+                    Piece.sortbylon(p_groupbylat);
 
                     for(Piece[] t:p_groupbylat){
 
@@ -235,6 +236,62 @@ public static void sortbylat(Piece[][] p){
 
 
     //return sortbylat;
+
+
+}
+
+
+
+
+
+
+//make sure that in each collumn the longtitude of the piece are same 
+//and the piece with the lower longtitude will rank lower in the collumn 
+
+public static void sortbylon(Piece[][] p){
+
+
+
+    int w=p.length;
+
+    //note: j stands for row, i stands for collumn.
+
+      for(int j=0;j<w;j++){
+
+           
+           for(int i=0;i<2;i++){
+
+
+           	  for(int t=i+1;t<w;t++){
+
+
+                 if(p[j][t].lon<p[j][i].lon){
+
+                        
+                    Piece temp=null;
+
+                    temp=p[j][i];
+                    p[j][i]=p[j][t];
+                    p[j][t]=temp;
+
+
+               }
+                    
+
+
+
+
+           	  }
+
+
+            
+
+
+           }
+
+
+      }
+
 
 
 }
