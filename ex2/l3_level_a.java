@@ -25,7 +25,7 @@ public class l3_level_a{
      				    Piece p9=new Piece(10,0);
 
 
-     				    Piece[] p={p1,p2,p3,p5,p4,p6,p9,p8,p7};
+     				    Piece[] p={p1,p2,p3,p5,p4,p9,p6,p8,p7};
 
      				    //Collections.shuffle(p);
            						
@@ -103,7 +103,9 @@ class Piece{
 
 
 
-//step b
+//step b  make sure that in each colnumn the latitudes of the piece are different. 
+
+
 
 public static Piece[][] groupByLat(Piece[] p){
 
@@ -136,7 +138,7 @@ public static Piece[][] groupByLat(Piece[] p){
 
       	 System.out.println(2);
 
-          while(latGroup[i+1][j].lat==latGroup[i][j].lat){
+          while(latGroup[i+1][j].lat==latGroup[0][j].lat){
 
                    Piece temp=null;
                 
@@ -168,6 +170,53 @@ public static Piece[][] groupByLat(Piece[] p){
 	
 }
 
+
+//make sure that in each row the latitudes of the piece are same 
+//and the piece with the lower latitude will rank higer in the array 
+
+public static void sortbylat(Piece[][] p){
+
+
+
+    w=p.length
+
+      for(int j=0;j<3;j++){
+
+           
+           for(int i;i<w-1;i++){
+
+
+               if(p[i][j]>p[i+1][j]){
+
+                        
+                    Piece temp=null;
+
+                    temp=p[i][j];
+                    p[i][j]=p[i+1][j];
+                    p[i+1]=temp;
+
+
+               }
+
+
+
+           }
+
+
+      }
+
+
+
+
+
+
+    //return sortbylat;
+
+
+}
+
+
+
 }
 
 
@@ -191,6 +240,16 @@ for(i){
 
 
 
+
+
+*/
+
+
+
+
+/*
+
+    System.out.printin("this keyboard is extremely excellent");
 
 
 */
