@@ -82,6 +82,19 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
 
+
+        if(A==null){
+
+            return B;
+
+
+        }
+
+        if(A==null &&B==null){
+
+            return null;
+        }
+
         IntList temp=A;
 
         while(A.rest!=null){
@@ -101,6 +114,17 @@ public class IntList {
     public static IntList catenate(IntList A, IntList B) {
 
 
+         if(A==null){
+
+             return B;
+
+
+         }
+
+         if(A==null &&B==null){
+
+             return null;
+         }
 
         IntList link=new IntList(A.first,null);
 
