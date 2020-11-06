@@ -151,4 +151,24 @@ public class Planet {
 
   }
 
+
+   public void update(double second, double x_force,double y_force){
+
+                        double ax;
+                        double ay;
+
+                        ax=x_force/this.mass;
+                        ay=y_force/this.mass;
+
+                        xxVel=xxVel+ax*second;
+
+                        yyVel=yyVel+ay*second;
+
+                        xxPos=xxPos+xxVel*second;
+                        yyPos=yyPos+yyVel*second;
+
+
+
+   }
+
 }
