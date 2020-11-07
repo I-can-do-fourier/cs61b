@@ -35,25 +35,48 @@ public class NBody{
        
         Planet[] p=new Planet[n];
 
-        int i=n;
+        int i=1;
 
         //read all the data of the planets into the code;
 
-         while(i-1>=0){
+         while(i<=n){
 
            p[i-1]=new Planet(in.readDouble(),in.readDouble(),in.readDouble(),
                              in.readDouble(),in.readDouble(),in.readString());
-           
-             StdDraw.picture(p[i-1].xxPos,p[i-1].yyPos,"./images/"+p[i-1].imgFileName);
-           //StdDraw.picture(0,0,"./images/"+p[i-1].imgFileName);
-            i--;
+           i++;
+
          }
+
+         Planet.draw(p);
 
 
          StdDraw.enableDoubleBuffering();
 
+         double t=0;
+         while (t<=T){
 
-         
+
+             double[] xForces=new double[5];
+             double[] yForces=new double[5];
+
+             for(i=0;i<n;i++){
+
+                 xForces[i]=p[i].calcNetForceExertedByX(p);
+                 yForces[i]=p[i].calcNetForceExertedByY(p);
+
+                 p[i].update(dt,xForces[i],yForces[i]);
+                 StdDraw.picture(0,0,"./images/starfield.jpg");
+
+                 Planet.draw(p);
+
+                 StdDraw.show();
+
+                 StdDraw.pause(10);
+
+             }
+             t=t+dt;
+         }
+
 	}
 
 

@@ -172,10 +172,24 @@ public class Planet {
    }
 
 
-   public void draw(){
+   //draw all the planets
 
-          String path="./images"+imgFileName;
-          StdDraw.picture(xxPos,yyPos,path);
+   public static void draw(Planet[] p){
+
+       In in=new In("./data/planets.txt");
+
+       int n=in.readInt();
+
+       Double r=in.readDouble();
+
+          int i=1;
+
+        while(i<=n){
+
+           StdDraw.picture(p[i-1].xxPos,p[i-1].yyPos,"./images/"+p[i-1].imgFileName);
+           //StdDraw.picture(0,0,"./images/"+p[i-1].imgFileName);
+           i++;
+       }
 
 
 
