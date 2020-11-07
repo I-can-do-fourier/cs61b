@@ -23,14 +23,41 @@ public class NBody{
 
 
 
-        StdDraw.setCanvasSize(1000,1000);
-        StdDraw.picture(0.5,0.5,"./images/starfield.jpg");
+        StdDraw.setCanvasSize(512,512);
 
+        StdDraw.setXscale(-r,r);
+        StdDraw.setYscale(-r,r);
+        StdDraw.picture(0,0,"./images/starfield.jpg");
 
         
+       //draw planets 
+
+       
+        Planet[] p=new Planet[n];
+
+        int i=n;
+
+        //read all the data of the planets into the code;
+
+         while(i-1>=0){
+
+           p[i-1]=new Planet(in.readDouble(),in.readDouble(),in.readDouble(),
+                             in.readDouble(),in.readDouble(),in.readString());
+           
+             StdDraw.picture(p[i-1].xxPos,p[i-1].yyPos,"./images/"+p[i-1].imgFileName);
+           //StdDraw.picture(0,0,"./images/"+p[i-1].imgFileName);
+            i--;
+         }
+
+
+         StdDraw.enableDoubleBuffering();
+
 
          
 	}
+
+
+	//create the animation
 
 	
 
