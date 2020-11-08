@@ -1,0 +1,2 @@
+1. lecture1 ex
+2. finish the whole AList 
