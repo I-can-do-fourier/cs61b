@@ -12,11 +12,13 @@ public class NBody{
 
         String filename=args[2];
 
+        double r=readRadius(filename);
+
         In in=new In(filename);
 
         int n=in.readInt();
 
-        Double r=in.readDouble();
+        r=in.readDouble();
 
 
       //draw the background of the universe
