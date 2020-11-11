@@ -28,11 +28,17 @@ public class LinkedListDeque<T> {
               s1.addLast("3");
               s1.addLast("3");
               s1.addLast("3");
+              s1.addLast("7");
               String got11=s1.get(1);
               String got12=s1.get(0);
               String got13=s1.get(2);
               s1.printDeque();
               //LinkedListDeque<String> s1=new LinkedListDeque("1");
+
+              String got14=s1.getRecursive(3);
+              String got15=s1.getRecursive(0);
+              String got16=s1.getRecursive(1);
+              String got17=s1.getRecursive(5);
 
               LinkedListDeque s2=new LinkedListDeque("1");
               s2.addFirst("2");
@@ -49,10 +55,12 @@ public class LinkedListDeque<T> {
     public LinkedListDeque(){
 
 
-          sentinel=new IntList("error ",null,null);
+          sentinel=new IntList("error",null,null);
 
           //sentinel.next=sentinel.prev;
 
+
+          //sentinel的prev和next都要指向sentinel本身
           sentinel.prev=sentinel;
 
           sentinel.next=sentinel.prev;
@@ -109,7 +117,7 @@ public class LinkedListDeque<T> {
 
    public boolean isEmpty(){
 
-        if(size==0){
+        if(size<=0){
 
             return true;
 
@@ -217,8 +225,35 @@ public class LinkedListDeque<T> {
 
         }
 
+
         return (T) temp.value;
 
    }
+
+
+
+
+   public static Object GetRecursive(int x,IntList t){
+
+                if(x==0){
+
+                    return t.value;
+
+
+                }
+
+                 x--;
+
+                return GetRecursive(x,t.next);
+
+
+   }
+
+    public T getRecursive(int x){
+
+           return (T) GetRecursive(x,sentinel.next);
+
+    }
+
 
 }
