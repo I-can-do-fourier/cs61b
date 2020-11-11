@@ -152,7 +152,7 @@ public class IntList {
     public  IntList point_to_SecondLast(){
 
         //this condition is essential
-        if(rest==null||this==null){
+        if(rest==null){
 
 
            return this;
@@ -178,12 +178,18 @@ public class IntList {
 
            //point to the second last node int the list
 
-           if(A.rest==null||A==null){
+           if(A==null){
 
                return A;
 
            }
 
+           if(A.rest==null){
+
+
+               return A;
+
+           }
 
            IntList temp=A.point_to_SecondLast();
 
@@ -191,7 +197,7 @@ public class IntList {
 
            A=temp.rest;
 
-           while(true){
+           while(temp.rest!=null){
 
                temp.rest.rest=temp;
 
@@ -201,7 +207,7 @@ public class IntList {
 
                temp=B.point_to_SecondLast();
 
-               if(temp.rest==null){break;}
+
 
            }
 
