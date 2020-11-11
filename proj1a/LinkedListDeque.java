@@ -29,6 +29,11 @@ public class LinkedListDeque<T> {
               s1.addLast("3");
               s1.addLast("3");
               s1.addLast("7");
+              s1.addLast("7");
+              s1.addLast("7");
+              s1.addLast("7");
+              s1.addLast("7");
+
               String got11=s1.get(1);
               String got12=s1.get(0);
               String got13=s1.get(2);
@@ -55,7 +60,7 @@ public class LinkedListDeque<T> {
     public LinkedListDeque(){
 
 
-          sentinel=new IntList("error",null,null);
+          sentinel=new IntList(null,null,null);
 
           //sentinel.next=sentinel.prev;
 

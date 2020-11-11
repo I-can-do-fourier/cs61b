@@ -21,14 +21,58 @@ public class ArrayDeque<T> {
 
           ArrayDeque<String> s1=new ArrayDeque();
           s1.addFirst("1");
+          s1.addLast("7");
           s1.addLast("3");
-          s1.addLast("3");
-          s1.addLast("3");
-          s1.addLast("3");
+          s1.addLast("7");
+          s1.addLast("9");
+          s1.addFirst("5");
+          s1.addLast("0");
+          s1.addLast("6");
+          s1.addLast("5");
+          s1.addLast("4");
+          s1.addFirst("8");
+          s1.addLast("47");
+          s1.addLast("356");
+          s1.addLast("537");
+          s1.addLast("358");
+          s1.removeFirst();
+          s1.removeLast();
+          s1.removeFirst();
+          s1.removeLast();
+          s1.removeFirst();
+          s1.removeLast();
           String got11=s1.get(1);
           String got12=s1.get(0);
           String got13=s1.get(2);
+          String got14=s1.get(8);
+          s1.removeFirst();
+          s1.removeLast();
+          s1.removeFirst();
+          s1.removeLast();
+          s1.removeFirst();
+          s1.removeLast();
           s1.printDeque();
+          s1.removeFirst();
+          s1.removeLast();
+          s1.removeFirst();
+          s1.removeLast();
+          s1.removeFirst();
+          s1.removeLast();
+          s1.addFirst("1");
+          s1.addLast("7");
+          s1.addLast("3");
+          s1.addLast("7");
+          s1.addLast("9");
+          s1.addFirst("5");
+          s1.addLast("0");
+          s1.addLast("6");
+          s1.addLast("5");
+          s1.addLast("4");
+          s1.addFirst("8");
+          s1.addLast("47");
+          s1.addLast("356");
+          s1.addLast("537");
+          s1.addLast("358");
           //LinkedListDeque<String> s1=new LinkedListDeque("1");
 
           ArrayDeque s2=new ArrayDeque(1);
@@ -149,7 +193,7 @@ public class ArrayDeque<T> {
     public T removeFirst(){
 
 
-       if(size>0){size--;}
+       if(size>0){size--;}else{return (T) this;}
 
         T removed;
 
@@ -185,7 +229,7 @@ public class ArrayDeque<T> {
             first_index=removed_index;
 
 
-        if(size>=16&&(Double.valueOf(items.length)/size>4)){
+        if(items.length>=16&&(Double.valueOf(items.length)/size>4)){
 
 
             resize_shrink();
@@ -203,7 +247,8 @@ public class ArrayDeque<T> {
     public T removeLast(){
 
 
-        if(size>0){size--;}
+        if(size>0){size--;}else{return (T) this;}
+        //else{return (T) this;}
 
 
         T removed;
@@ -244,7 +289,7 @@ public class ArrayDeque<T> {
             last_index=removed_index;
 
 
-        if(size>=16&&(Double.valueOf(items.length)/size>4)){
+        if(items.length>=16&&(Double.valueOf(items.length)/size>4)){
 
 
             resize_shrink();
