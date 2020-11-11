@@ -92,7 +92,7 @@ public class IntListTest {
 
         assertNotEquals(IntList.of(1, 2, 3),A);
 
-        assertEquals(null,IntList.of());
+        assertEquals(null,IntList.reverse(IntList.of()));
 
         assertEquals(IntList.of(1),IntList.reverse(IntList.of(1)));
 
