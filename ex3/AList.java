@@ -97,12 +97,12 @@ public class AList{
   public int removeLast(){
 
 
-  	 if(items.length/size<4){
+  	 /*if(items.length/size<4){
 
             resize_shrink();
      
 
-  	 }
+  	 }*/
 
         int last=getLast();
 
