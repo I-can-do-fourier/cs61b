@@ -92,7 +92,7 @@ public class ArrayDeque<T> {
 
           // test: add to the front and remove
 
-          ArrayDeque<String> s1=new ArrayDeque();
+          /*ArrayDeque<String> s1=new ArrayDeque();
           s1.addFirst("5");
           s1.addFirst("5");
           s1.addFirst("5");
@@ -157,10 +157,27 @@ public class ArrayDeque<T> {
           s1.removeFirst();
           s1.removeFirst();
           s1.removeFirst();
-          s1.removeFirst();
+          s1.removeFirst();*/
 
 
+          //test removelast
 
+
+          ArrayDeque<Integer> s1=new ArrayDeque();
+
+          s1.addFirst(0);
+          s1.addLast(1);
+          s1.addLast(2);
+          s1.addFirst(3);
+          s1.addFirst(4);
+          s1.addLast(5);
+
+          s1.addFirst(9);
+          s1.addLast(10);
+          s1.removeLast();
+          s1.addLast(12);
+          s1.addFirst(13);
+          s1.removeLast();
 
       }
 
@@ -420,14 +437,29 @@ public class ArrayDeque<T> {
         int length_last=items.length-1-first_index;//计算从first_index到items队尾的长度
 
 
-        System.arraycopy(items,first_index+1,temp,temp.length-length_last,length_last);
+        if(first_index>last_index) {
+            System.arraycopy(items, (first_index + 1)%size, temp, (temp.length - length_last)%temp.length, length_last);
 
-        System.arraycopy(items,0,temp,0,last_index);
+            System.arraycopy(items, 0, temp, 0, size-(size-last_index)%size);
 
-        items=temp;
+            //items=temp;
 
 
-        first_index=temp.length-length_last-1; //新的first_index的位置
+            first_index = temp.length - length_last - 1; //新的first_index的位置
+
+            last_index = size-(size-last_index)%size;
+        }
+
+        else{
+
+            System.arraycopy(items,first_index+1,temp,temp.length/4,size);
+
+            first_index=temp.length/4-1;
+            last_index=temp.length/4+size;
+
+        }
+
+        items = temp;
 
     }
 
@@ -438,7 +470,7 @@ public class ArrayDeque<T> {
         int length_last=items.length-1-first_index;//计算从first_index到items队尾的长度
 
        if(first_index>last_index) {
-           System.arraycopy(items, first_index + 1, temp, temp.length - length_last, length_last);
+           System.arraycopy(items, (first_index + 1)%size, temp, (temp.length - length_last)%temp.length, length_last);
 
            System.arraycopy(items, 0, temp, 0, last_index);
 
