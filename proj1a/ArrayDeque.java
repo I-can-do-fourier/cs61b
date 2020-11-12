@@ -13,7 +13,7 @@ public class ArrayDeque<T> {
 
       public static void main(String[] args) {
 
-          ArrayDeque<String> s=new ArrayDeque<>();
+          /*ArrayDeque<String> s=new ArrayDeque<>();
           s.addLast("1");
           s.addFirst("4");
 
@@ -83,23 +83,28 @@ public class ArrayDeque<T> {
           String got31=s3.get(0);
           s3.removeFirst();
           String got32=s3.get(0);
+*/
+
+
+
+
 
 
 
       }
 
 
-        int exfactor=3;//扩大倍数
+        private int exfactor=2;//扩大倍数
 
-        int shfactor=2;//缩小倍数
+        private int shfactor=2;//缩小倍数
 
-        T[] items;
+        private  T[] items;
 
-        int last_index;
+        private int last_index;
 
-        int first_index;
+        private int first_index;
 
-        int size=0;
+        private int size=0;
 
         public ArrayDeque(){
 
@@ -179,7 +184,14 @@ public class ArrayDeque<T> {
 
     public boolean isEmpty(){
 
-         return false;
+        if(size<=0){
+
+            return true;
+
+        }
+
+        return false;
+
 
     }
 
@@ -193,7 +205,7 @@ public class ArrayDeque<T> {
     public T removeFirst(){
 
 
-       if(size>0){size--;}else{return (T) this;}
+       if(size>0){size--;}else{return null;}
 
         T removed;
 
@@ -225,7 +237,7 @@ public class ArrayDeque<T> {
             int removed_index=(first_index+1)%items.length;
 
             removed=items[removed_index];
-             items[removed_index]=null;
+             //items[removed_index]=null;
             first_index=removed_index;
 
 
@@ -247,7 +259,7 @@ public class ArrayDeque<T> {
     public T removeLast(){
 
 
-        if(size>0){size--;}else{return (T) this;}
+        if(size>0){size--;}else{return null;}
         //else{return (T) this;}
 
 
@@ -280,12 +292,12 @@ public class ArrayDeque<T> {
 
             if(removed_index<0){
 
-                removed_index=removed_index+8;
+                removed_index=removed_index+items.length;
             }
 
 
             removed=items[removed_index];
-            items[removed_index]=null;
+            //items[removed_index]=null;
             last_index=removed_index;
 
 
@@ -320,7 +332,7 @@ public class ArrayDeque<T> {
     }
 
 
-    public void resize_expand(){
+    private void resize_expand(){
 
         T[] temp= (T[]) new Object[items.length * exfactor];
 
@@ -338,7 +350,7 @@ public class ArrayDeque<T> {
 
     }
 
-    public void resize_shrink(){
+    private void resize_shrink(){
 
         T[] temp= (T[]) new Object[items.length/shfactor];
 
