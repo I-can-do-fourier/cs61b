@@ -174,7 +174,11 @@ public class LinkedListDeque<T> {
 
        }*/
 
-       size--;
+       if(size>0){
+
+           size--;
+
+       }
 
        return removed;
 
@@ -238,7 +242,7 @@ public class LinkedListDeque<T> {
 
 
 
-   public static Object GetRecursive(int x,IntList t){
+   private static Object GetRecursive(int x,IntList t){
 
                 if(x==0){
 
