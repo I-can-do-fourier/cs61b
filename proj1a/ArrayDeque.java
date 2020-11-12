@@ -90,6 +90,77 @@ public class ArrayDeque<T> {
 
 
 
+          // test: add to the front and remove
+
+          ArrayDeque<String> s1=new ArrayDeque();
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.addFirst("5");
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+          s1.removeFirst();
+
+
+
 
       }
 
@@ -205,7 +276,19 @@ public class ArrayDeque<T> {
     public T removeFirst(){
 
 
-       if(size>0){size--;}else{return null;}
+
+        if(items.length>=16&&(Double.valueOf(items.length)/size>4)){
+
+
+            resize_shrink();
+
+        }
+
+
+
+        //if(size>0){size--;}else{return null;}
+
+        if(size==0){return null;}
 
         T removed;
 
@@ -241,15 +324,8 @@ public class ArrayDeque<T> {
             first_index=removed_index;
 
 
-        if(items.length>=16&&(Double.valueOf(items.length)/size>4)){
 
-
-            resize_shrink();
-
-        }
-
-
-
+             size--;
 
         return removed;
 
@@ -259,9 +335,21 @@ public class ArrayDeque<T> {
     public T removeLast(){
 
 
-        if(size>0){size--;}else{return null;}
+        if(items.length>=16&&(Double.valueOf(items.length)/size>4)){
+
+
+            resize_shrink();
+
+
+
+        }
+
+
+        //if(size>0){size--;}else{return null;}
         //else{return (T) this;}
 
+
+        if(size==0){return null;}
 
         T removed;
 
@@ -301,14 +389,7 @@ public class ArrayDeque<T> {
             last_index=removed_index;
 
 
-        if(items.length>=16&&(Double.valueOf(items.length)/size>4)){
-
-
-            resize_shrink();
-
-
-
-        }
+            size--;
 
 
 
@@ -356,15 +437,32 @@ public class ArrayDeque<T> {
 
         int length_last=items.length-1-first_index;//计算从first_index到items队尾的长度
 
+       if(first_index>last_index) {
+           System.arraycopy(items, first_index + 1, temp, temp.length - length_last, length_last);
 
-        System.arraycopy(items,first_index+1,temp,temp.length-length_last,length_last);
-
-        System.arraycopy(items,0,temp,0,last_index);
-
-        items=temp;
+           System.arraycopy(items, 0, temp, 0, last_index);
 
 
-        first_index=temp.length-length_last-1;//新的dirst_index的位置
+
+
+           first_index = temp.length - length_last - 1;//新的dirst_index的位置
+
+       }
+
+
+           else{
+
+
+
+               System.arraycopy(items,first_index+1,temp,temp.length/4,size);
+
+               first_index=temp.length/4-1;
+               last_index=temp.length/4+size;
+
+
+           };
+
+                    items = temp;
 
     }
 
