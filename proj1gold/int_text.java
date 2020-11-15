@@ -15,6 +15,12 @@ public class int_text {
 
         int e=sb1(2);
 
+        for(int i=0;i<20;i++){
+
+
+            System.out.print(StdRandom.discrete(new int[]{7,7,1,1})+"  ");
+        }
+
     }
 
 
