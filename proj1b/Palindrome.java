@@ -61,7 +61,7 @@ public class  Palindrome{
     }
 
 
-    private static boolean compare_char(Deque d){
+     private static boolean compare_char(Deque d){
 
 
                 if(d.size()==0||d.size()==1){
