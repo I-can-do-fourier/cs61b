@@ -20,7 +20,7 @@ public class  Palindrome{
 
 
 
-    //help method for ispalindrome
+    //help method for ispalindrome2
 
 
     private static boolean compare_char2(Deque d,int index){
@@ -61,6 +61,8 @@ public class  Palindrome{
     }
 
 
+
+    //help method for ispalindrome
      private static boolean compare_char(Deque d){
 
 
@@ -89,6 +91,43 @@ public class  Palindrome{
                return compare_char(wordToDeque(word));
 
 
+
+    }
+
+
+
+    //help method for ispalindrome of offbyone version
+    private static boolean compare_char(Deque d,CharacterComparator cc){
+
+
+                        if (d.size()==0||d.size()==1){
+
+
+                            return true;
+
+                        }
+
+
+                        else if (!cc.equalChars((char) d.removeFirst(),(char) d.removeLast())){
+
+                                    return false;
+
+                        }
+
+
+                return compare_char(d,cc);
+
+    }
+
+
+
+    //ispalindrome for offbyone
+
+    public boolean isPalindrome(String word, CharacterComparator cc){
+
+
+
+            return compare_char(wordToDeque(word),cc);
 
     }
 
