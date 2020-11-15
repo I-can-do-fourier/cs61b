@@ -1,4 +1,23 @@
-package PACKAGE_NAME;
+public interface Deque<T> {
 
-public class Deque {
+
+     void addFirst(T x);
+
+     void addLast(T item);
+
+     boolean isEmpty();
+
+     int size();
+
+     void printDeque();
+
+     T removeFirst();
+
+     T removeLast();
+
+     T get(int index);
+
+
+
+
 }
