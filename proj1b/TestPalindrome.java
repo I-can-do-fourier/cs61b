@@ -43,6 +43,23 @@ public class TestPalindrome {
     }
 
 
+    @Test
+    public void isp_offbyone_test() {
+
+        assertTrue("you are beach", palindrome.isPalindrome("1",new OffByOne()));
+
+        assertTrue("you are a beach",palindrome.isPalindrome("122",new OffByOne()));
+
+        assertFalse("space fail", palindrome.isPalindrome("..1..",new OffByOne()));
+
+        assertTrue("you are beach", palindrome.isPalindrome("%&",new OffByOne()));
+
+        assertFalse("punctuation fail", palindrome.isPalindrome("i.i",new OffByOne()));
+
+        assertFalse("sentence fail", palindrome.isPalindrome("i 00 i",new OffByOne()));
+
+    }
+
 
 
 }

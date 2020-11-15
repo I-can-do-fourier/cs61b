@@ -11,12 +11,12 @@ public class TestOffByOne {
 
     @Test
 
-    public void isPalindrome_offbyone(CharacterComparator compare){
+    public void equal_char_test(){
 
 
-        assertTrue("you are beach", palindrome.isPalindrome("flake",offByOne));
+        /*assertTrue();
 
-        assertTrue("you are beach", palindrome.isPalindrome("",offByOne));
+        assertTrue();
 
         assertTrue("you are beach", palindrome.isPalindrome("1",offByOne));
 
@@ -24,11 +24,14 @@ public class TestOffByOne {
 
         assertFalse("space fail", palindrome.isPalindrome("..1..",offByOne));
 
-        assertTrue("you are beach", palindrome.isPalindrome("%&",offByOne));
+        assertTrue("you are beach", palindrome.isPalindrome("%&",offByOne));*/
 
         //assertTrue("punctuation fail", palindrome.isPalindrome("i.i",new OffByOne()));
 
         //assertTrue("sentence fail", palindrome.isPalindrome("i 00 i",new OffByOne()));*/
+
+        assertTrue("1",offByOne.equalChars('1','2'));
+        assertTrue("1",offByOne.equalChars('a','b'));
 
 
     }
