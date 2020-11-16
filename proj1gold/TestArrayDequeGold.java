@@ -18,11 +18,11 @@ public class TestArrayDequeGold {
 
                  super.add(s);
 
-                 if(this.size()==10){
+                 /*if(this.size()==10){
 
                        this.removeFirst();
 
-                 }
+                 }*/
         return true;
 
         }
