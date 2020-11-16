@@ -9,29 +9,77 @@ public class TestArrayDequeGold {
 
 
 
+    public class message_store extends LinkedList<String>{
 
-    public static String auto_message(int x,int value,int if_return){
+
+        @Override
+        public boolean add(String s) {
 
 
-         if(if_return>=10){return "";}
+                 super.add(s);
+
+                 if(this.size()==10){
+
+                       this.removeFirst();
+
+                 }
+        return true;
+
+        }
+
+
+   /*     public String message_print(String m){
+
+                  if(this.size()==0){
+
+                      return m;
+
+                  }else{m=m+this.pollFirst();}
+
+                 return message_print(m);
+
+        }
+*/
+
+        public String message_print(){
+
+                 String m="";
+
+                 for(String message: this){
+
+                      m=m+message;
+
+
+                 }
+
+                 return m;
+
+        }
+    }
+
+
+
+    public static String message_update(int x,int value){
+
+
 
 
           switch (x){
 
               case 0:
 
-                  return "addFirst("+String.valueOf(value)+")";
+                  return "\naddFirst("+String.valueOf(value)+")";
 
               case 1:
-                  return "addLast("+String.valueOf(value)+")";
+                  return "\naddLast("+String.valueOf(value)+")";
 
               case 2:
 
-                  return "removeFirst()";
+                  return "\nremoveFirst()";
 
               case 3:
 
-                  return "removeLast()";
+                  return "\nremoveLast()";
 
 
               default:return "";
@@ -43,6 +91,10 @@ public class TestArrayDequeGold {
     }
 
 
+
+
+
+
     @Test
     public void deque_test() {
 
@@ -51,89 +103,7 @@ public class TestArrayDequeGold {
 
         StudentArrayDeque<Integer> test1_student = new StudentArrayDeque<>();
 
-        //test1  random addfirst and removefirst
-
-       /* for (int i = 1; i <= 500; i++) {
-
-            System.out.println("test: " + i);
-
-
-            for (int j = 1; j <= i; j++) {
-
-                Integer random = StdRandom.uniform(300);
-                test1_correct.addFirst(random);
-                test1_student.addFirst(random);
-
-
-            }
-
-            for (int j = 1; j <= i; j++) {
-
-                assertEquals(test1_correct.removeFirst(), test1_student.removeFirst());
-
-
-            }
-
-
-        }
-
-
-        //test2 addfirst removelast
-
-        for(int i=1;i<=500;i++) {
-
-            System.out.println("test: "+i);
-
-
-            for (int j = 1; j <= i; j++) {
-
-                Integer random = StdRandom.uniform(300);
-                test1_correct.addFirst(random);
-                test1_student.addFirst(random);
-
-
-            }
-
-            for (int j = 1; j <= i; j++) {
-
-                assertEquals(test1_correct.removeLast(), test1_student.removeLast());
-
-
-            }
-
-
-
-
-
-        }
-
-
-        //test3 addlast removefirst
-
-        for (int i = 1; i <= 500; i++) {
-
-            System.out.println("test: " + i);
-
-
-            for (int j = 1; j <= i; j++) {
-
-                Integer random = StdRandom.uniform(300);
-                test1_correct.addLast(random);
-                test1_student.addLast(random);
-
-
-            }
-
-            for (int j = 1; j <= i; j++) {
-
-                assertEquals(test1_correct.removeFirst(), test1_student.removeFirst());
-
-
-            }
-
-
-        }*/
-
+        message_store message= new message_store();
 
 
         //test4 addlast removelast
@@ -145,7 +115,6 @@ public class TestArrayDequeGold {
             int length=StdRandom.uniform(300);
 
 
-            String message="";
 
 
             for (int j = 1; j <= length; j++) {
@@ -162,28 +131,30 @@ public class TestArrayDequeGold {
                         test1_correct.addFirst(random_add);
                         test1_student.addFirst(random_add);
 
-                        message=message+auto_message(random_choice,random_add,length-j);
+                        //message=message+message_update(random_choice,random_add,length-j);
+
+                        message.add(message_update(random_choice,random_add));
                         break;
 
                     case 1 :
 
                         test1_correct.addLast(random_add);
                         test1_student.addLast(random_add);
-                        message=message+auto_message(random_choice,random_add,length-j);
+                        message.add(message_update(random_choice,random_add));
                         break;
 
                     case 2:
 
 
-                        message=message+auto_message(random_choice,random_add,length-j);
-                        assertEquals(message,test1_correct.removeFirst(), test1_student.removeFirst());
+                        message.add(message_update(random_choice,random_add));
+                        assertEquals(message.message_print(),test1_correct.removeFirst(), test1_student.removeFirst());
                         break;
 
                     case 3:
 
 
-                        message=message+auto_message(random_choice,random_add,length-j);
-                        assertEquals(message,test1_correct.removeLast(), test1_student.removeLast());
+                        message.add(message_update(random_choice,random_add));
+                        assertEquals(message.message_print(),test1_correct.removeLast(), test1_student.removeLast());
                         break;
 
                 }
@@ -196,8 +167,6 @@ public class TestArrayDequeGold {
 
             }
 
-
-            //System.out.print(message);
 
         }
 
