@@ -19,6 +19,7 @@ import java.awt.Color;
 public class Tileset {
     public static final TETile PLAYER = new TETile('@', Color.white, Color.black, "player");
     public static final TETile a = new TETile('a', Color.white, Color.black, "a");
+    public static final TETile b = new TETile('b', Color.white, Color.black, "b");
     public static final TETile WALL = new TETile('#', new Color(216, 128, 128), Color.darkGray,
             "wall");
     public static final TETile FLOOR = new TETile('·', new Color(128, 192, 128), Color.black,
