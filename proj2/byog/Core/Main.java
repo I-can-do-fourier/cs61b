@@ -17,16 +17,11 @@ public class Main {
             Game game = new Game();
             TETile[][] worldState = game.playWithInputString(args[0]);
 
-            if(worldState==null){
 
-                System.out.println("please enter the valid code");
-
-            }else{
 
 
                 System.out.println(TETile.toString(worldState));
 
-            }
 
         } else {
             Game game = new Game();

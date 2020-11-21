@@ -68,7 +68,7 @@ public class World_generation_v2 {
 
         //junctions.remove(0)
 
-        System.out.println(TETile.toString(world));
+        /*System.out.println(TETile.toString(world));*/
 
         int j=0;
 
@@ -85,7 +85,7 @@ public class World_generation_v2 {
 
                world[junction[0]][junction[1]] = Tileset.NOTHING;
 
-               System.out.print(TETile.toString(world));
+            /*   System.out.print(TETile.toString(world));*/
 
 
 
@@ -186,7 +186,7 @@ public class World_generation_v2 {
 
            }
 
-           System.out.print(TETile.toString(world));
+           /*System.out.print(TETile.toString(world));*/
 
 
            junctions.removeAll(junctions);
