@@ -66,9 +66,7 @@ public class World_generation_v2 {
 
         junctions.addAll(temp);
 
-        //junctions.remove(0)
 
-        /*System.out.println(TETile.toString(world));*/
 
         int j=0;
 
@@ -85,9 +83,6 @@ public class World_generation_v2 {
 
                world[junction[0]][junction[1]] = Tileset.NOTHING;
 
-            /*   System.out.print(TETile.toString(world));*/
-
-
 
                int width;
                int height;
@@ -102,8 +97,6 @@ public class World_generation_v2 {
 
 
                    case 1:
-                       //width = 3 + random_route.nextInt(10);
-                       //height = 3 + random_route.nextInt(10);
 
                        x_p = junction[0] - 1 - random_route.nextInt((width - 2));
                        y_p = junction[1] - (height - 1);
@@ -120,9 +113,6 @@ public class World_generation_v2 {
 
                    case 2:
 
-                      // width = 3 + random_route.nextInt(10);
-                       //height = 3 + random_route.nextInt(10);
-
                        x_p = junction[0];
                        y_p = junction[1] - 1 - random_route.nextInt(height - 2);
 
@@ -137,8 +127,6 @@ public class World_generation_v2 {
 
                    case 3:
 
-                       //width = 3 + random_route.nextInt(10);
-                       //height = 3 + random_route.nextInt(10);
 
                        x_p = junction[0] - (width - 1);
                        y_p = junction[1] - 1 - random_route.nextInt(height - 2);
@@ -154,9 +142,6 @@ public class World_generation_v2 {
 
                    case 4:
 
-                       //width = 3 + random_route.nextInt(10);
-                       //height = 3 + random_route.nextInt(10);
-
                        x_p = junction[0] - 1 - random_route.nextInt((width - 2));
                        y_p = junction[1];
 
@@ -169,14 +154,9 @@ public class World_generation_v2 {
 
                        break;
 
-
-
-
                }
 
-               //Runtime.getRuntime().exec("cls");
 
-               //System.out.print("\033[H\033[2J");
 
             if(hole_forsingle!=null) {
 
@@ -185,18 +165,12 @@ public class World_generation_v2 {
             }
 
            }
-
-           /*System.out.print(TETile.toString(world));*/
-
-
            junctions.removeAll(junctions);
 
            junctions.addAll(temp);
 
 
-         /*  if (j > +10) {
-               break;
-           }*/
+
        }
 
         return world;
@@ -317,17 +291,6 @@ public class World_generation_v2 {
 
 
         return junc;
-/*
-        for(int[] junction :temp){
-
-            world[junction[0]][junction[1]]=Tileset.NOTHING;
-
-
-        }
-
-        junctions.add(temp);
-*/
-
 
 
     }
@@ -336,16 +299,6 @@ public class World_generation_v2 {
     public List<int[]> add_rect(){
 
 
-
-
-        /*int p_x=15+random_route.nextInt(WIDTH-30);
-
-        int p_y=15+random_route.nextInt(HEIGHT-30);
-
-        int width=4+random_route.nextInt(10);
-
-        int height=4+random_route.nextInt(10);
-*/
         Rec re= new Rec(random_route);
 
         int[] parameters=re.parameters();
@@ -374,67 +327,9 @@ public class World_generation_v2 {
         List<int[]> temp=re.junctions();
 
         return temp;
-/*
-        for(int[] junction :temp){
-
-            world[junction[0]][junction[1]]=Tileset.NOTHING;
-
-
-        }
-
-        junctions.add(temp);
-*/
-
 
 
     }
-
-
-
-    public List<int[]> end_rec(int[] position,int width, int height){
-
-        List<int[]> rec=new ArrayList<>();
-
-
-        for(int i=position[0];i<position[0]+width;i++){
-
-            int[] temp=new int[2];
-            temp[0]=i;temp[1]=position[1];
-            rec.add(temp);
-
-        }
-
-
-        for(int i=position[1]+1;i<position[1]+height;i++){
-
-            int[] temp=new int[2];
-            temp[0]=position[0]+width-1; temp[1]=i;
-            rec.add(temp);
-
-        }
-
-        for(int i=position[1]+1;i<position[1]+height;i++){
-
-            int[] temp=new int[2];
-            temp[0]=position[0]; temp[1]=i;
-            rec.add(temp);
-
-        }
-
-
-        for(int i=position[0]+1;i<position[0]+width-1;i++){
-
-            int[] temp=new int[2];
-            temp[0]=i;temp[1]=position[1]+height-1;
-            rec.add(temp);
-
-        }
-
-        return rec;
-
-
-    }
-
 
 
 
@@ -448,26 +343,6 @@ public class World_generation_v2 {
 
 
     }
-
-
-
-
-
-    public int random_dxdy() {
-        int tileNum =random_route.nextInt(4);
-        switch (tileNum) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            default:
-        }
-        return 0;
-    }
-
-
-
 
 
 
