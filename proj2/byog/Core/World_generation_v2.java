@@ -1,7 +1,7 @@
 package byog.Core;
 
 
-import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -11,7 +11,10 @@ import byog.TileEngine.Tileset;
 
 import java.util.List;
 
-public class World_generation_v2 {
+public class World_generation_v2 implements Serializable {
+    private static final long serialVersionUID = 1661691259286224996L;
+
+    //private static final long serialVersionUID = 1L;
 
     private int seed;
 
@@ -32,6 +35,9 @@ public class World_generation_v2 {
 
     private List<int[]> junctions=new ArrayList<int[]>();
 
+    private List<int[]> Floors=new ArrayList<>();
+
+    public  int[] man_position;
 
     public World_generation_v2(int seed,int width,int height){
 
@@ -56,6 +62,20 @@ public class World_generation_v2 {
 
 
 
+    }
+
+
+    public void set_world(TETile[][] world){
+
+            this.world=world;
+
+
+    }
+
+    public TETile[][] return_existed_world(){
+
+
+            return world;
     }
 
 
@@ -161,6 +181,8 @@ public class World_generation_v2 {
             if(hole_forsingle!=null) {
 
                 world[junction[0]][junction[1]] = Tileset.FLOOR;
+                Floors.add(new int[]{junction[0],junction[1]});
+
 
             }
 
@@ -172,6 +194,12 @@ public class World_generation_v2 {
 
 
        }
+
+       man_position =Floors.get(random_route.nextInt(Floors.size()));
+
+
+
+       world[man_position[0]][man_position[1]]=Tileset.PLAYER;
 
         return world;
 
@@ -280,6 +308,7 @@ public class World_generation_v2 {
 
 
                     world[i][j] = Tileset.FLOOR;
+                    Floors.add(new int[]{i,j});
 
 
                 }
@@ -318,7 +347,7 @@ public class World_generation_v2 {
 
                 world[i][j]=Tileset.FLOOR;
 
-
+                Floors.add(new int[]{i,j});
             }
 
 

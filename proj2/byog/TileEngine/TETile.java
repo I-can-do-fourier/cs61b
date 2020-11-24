@@ -23,9 +23,10 @@ import byog.Core.RandomUtils;
  * to make your TETile class mutable, if you prefer.
  */
 
-public class TETile implements Serializable {
+public class TETile implements Serializable{
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 389102514428468720L;
+    //private static final long serialVersionUID = 1L;
     private final char character; // Do not rename character or the autograder will break.
     private final Color textColor;
     private final Color backgroundColor;
