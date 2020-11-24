@@ -24,6 +24,8 @@ import byog.Core.RandomUtils;
  */
 
 public class TETile implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     private final char character; // Do not rename character or the autograder will break.
     private final Color textColor;
     private final Color backgroundColor;

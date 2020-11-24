@@ -3,20 +3,86 @@ package byog.Core;
 import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
+
+import edu.princeton.cs.introcs.StdDraw;
+
 
 public class Game {
     TERenderer ter = new TERenderer();
+
     /* Feel free to change the width and height. */
     public static final int WIDTH = 80;
     public static final int HEIGHT = 40;
+
+    private TETile[][] finalWorldFrame=new TETile[WIDTH][HEIGHT];
+
 
     /**
      * Method used for playing a fresh game. The game should start from the main menu.
      */
     public void playWithKeyboard() {
+
+
+
+        String seed="";
+
+
+        StdDraw.setCanvasSize(512,512);
+        StdDraw.text(0.5,0.7,"New Game(N)");
+        StdDraw.text(0.5,0.6,"Load Game(L)");
+        StdDraw.text(0.5,0.5,"Quit Game(Q)");
+
+        StdDraw.enableDoubleBuffering();
+
+        while(true){
+
+            StdDraw.clear();
+
+            StdDraw.text(0.5,0.7,"New Game(N)");
+            StdDraw.text(0.5,0.6,"Load Game(L)");
+            StdDraw.text(0.5,0.5,"Quit Game(Q)");
+
+
+            if(StdDraw.hasNextKeyTyped()) {
+                ;
+                char letter = StdDraw.nextKeyTyped();
+                if(letter == 'N' || letter == 'n'){
+
+                            create_world(finalWorldFrame);
+                            break;
+
+                }else if(letter == 'L' || letter == 'l'){
+
+                    try {
+
+                        FileInputStream streamIn = new FileInputStream("./data.txt");
+                        ObjectInputStream in= new ObjectInputStream (streamIn);
+                        finalWorldFrame = (TETile[][]) in.readObject();
+                        ter.renderFrame(finalWorldFrame);
+
+                    }catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+
+
+                }else if(letter == 'q' || letter == 'Q'){
+
+
+
+                }
+
+            }
+            StdDraw.text(0.5,0.4,seed);
+
+            StdDraw.pause(20);
+
+            StdDraw.show();
+
+        }
+
     }
 
     /**
@@ -37,9 +103,7 @@ public class Game {
         // and return a 2D tile representation of the world that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
 
-        TETile[][] finalWorldFrame;
 
-        finalWorldFrame = new TETile[WIDTH][HEIGHT];
 
         String seed = "";
 
@@ -60,7 +124,22 @@ public class Game {
 
                 finalWorldFrame = new TETile[WIDTH][HEIGHT];
 
-            } else if (Character.isDigit(ch) && seed_finished == false) {
+            }else if(ch == 'L' || ch == 'l'){
+
+
+                try {
+
+                    FileInputStream streamIn = new FileInputStream("./data.txt");
+                    ObjectInputStream in= new ObjectInputStream (streamIn);
+                    finalWorldFrame = (TETile[][]) in.readObject();
+
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+
+            }else if (Character.isDigit(ch) && seed_finished == false) {
 
 
                 seed = seed + ch;
@@ -82,11 +161,13 @@ public class Game {
                 FileOutputStream fout = null;
 
                 try {
-                    fout = new FileOutputStream("data.txt", true);
+                    fout = new FileOutputStream("./data.txt");
                     oos = new ObjectOutputStream(fout);
                     oos.writeObject(finalWorldFrame);
                 } catch (Exception ex) {
                     ex.printStackTrace();
+
+
                 } finally {
                     if (oos != null) {
                         oos.close();
@@ -102,6 +183,54 @@ public class Game {
         }
 
         return finalWorldFrame;
+
+    }
+
+
+
+    private  void create_world(TETile[][] world){
+
+        String seed = "";
+
+        while(true){
+
+            StdDraw.clear();
+
+            StdDraw.text(0.5,0.7,"New Game(N)");
+            StdDraw.text(0.5,0.6,"Load Game(L)");
+            StdDraw.text(0.5,0.5,"Quit Game(Q)");
+
+
+            if(StdDraw.hasNextKeyTyped()) {
+
+                char letter = StdDraw.nextKeyTyped();
+
+                if(letter=='s'||letter=='S'){
+
+                    ter.initialize(WIDTH, HEIGHT);
+
+                    World_generation_v2 W = new World_generation_v2(Integer.valueOf(seed), WIDTH, HEIGHT);
+                    finalWorldFrame = W.returnworld();
+
+                    ter.renderFrame(finalWorldFrame);
+                    break;
+
+                }
+                seed = seed + letter;
+
+            }
+
+
+            StdDraw.text(0.5,0.4,seed);
+
+
+
+            StdDraw.show();
+
+            StdDraw.pause(20);
+
+            }
+
 
     }
 
