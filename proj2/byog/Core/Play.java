@@ -5,11 +5,14 @@ import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 import edu.princeton.cs.introcs.StdDraw;
 
+import java.awt.event.KeyEvent;
 import java.io.*;
 
 public class Play {
 
 
+
+    private static int j=0;
 
     private static int WIDTH;
     private static int HEIGHT;
@@ -20,6 +23,8 @@ public class Play {
 
     private static TETile[][] finalWorldFrame;
 
+    public static int[] p;  //man_position
+
 
     public Play(World_generation_v2 W,int WIDTH,int HEIGHT){
 
@@ -28,6 +33,7 @@ public class Play {
             this.W=W;
             this.WIDTH=WIDTH;
             this.HEIGHT=HEIGHT;
+
 
 
     }
@@ -87,7 +93,10 @@ public class Play {
                     W = new World_generation_v2(Integer.valueOf(seed), WIDTH, HEIGHT);
                     finalWorldFrame = W.returnworld();
 
+
                     ter.renderFrame(finalWorldFrame);
+
+
                     break;
 
                 }
@@ -101,7 +110,7 @@ public class Play {
 
             StdDraw.show();
 
-            StdDraw.pause(20);
+            StdDraw.pause(200);
 
         }
 
@@ -111,19 +120,42 @@ public class Play {
 
     public static void playing() throws IOException {
 
-
-        int[] man_position=W.man_position;
+        p=W.man_position;
 
         char letter='/';
 
+        int direction=4;
+
+        int i=0;
+
 
         while(true) {
+
+            if(i>=1000){
+
+                    i=0;
+
+            }
+
+
+            if(i%4==0){
+                Bullet.bullet_show(finalWorldFrame);
+            }
+
+            if(i%3==0){
+
+
+                    direction=move(direction);
+
+                }
+
 
             if (StdDraw.hasNextKeyTyped()) {
 
                 letter = StdDraw.nextKeyTyped();
 
-                move(letter);
+
+
 
                 if(letter =='q'){
 
@@ -149,14 +181,102 @@ public class Play {
 
                     break;
 
+                }else if(letter =='j'){
+
+                    Bullet bu=new Bullet(p[0],p[1],direction);
+
+                    if(!finalWorldFrame[bu.p_x()][bu.p_y()].description().equals("a")){
+
+                        Bullet.add(bu);
+
+                        finalWorldFrame[bu.p_x()][bu.p_y()]=Tileset.BULLET;
+
+                    }
+
+                  /*  if(StdDraw.isKeyPressed(KeyEvent.VK_W)){
+
+                        if(direction!=4){
+
+                            Bullet bu=new Bullet(p[0],p[1],4);
+
+                            if(!finalWorldFrame[bu.p_x()][bu.p_y()].description().equals("a")){
+
+                                Bullet.add(bu);
+
+                                finalWorldFrame[bu.p_x()][bu.p_y()]=Tileset.BULLET;}
+                       }
+
+
+                    }else if(StdDraw.isKeyPressed(KeyEvent.VK_S)){
+
+
+                        if(direction!=1){
+
+                            Bullet bu=new Bullet(p[0],p[1],1);
+
+                            if(!finalWorldFrame[bu.p_x()][bu.p_y()].description().equals("a")){
+
+                                Bullet.add(bu);
+
+                                finalWorldFrame[bu.p_x()][bu.p_y()]=Tileset.BULLET;}
+                        }
+
+                    }else if(StdDraw.isKeyPressed(KeyEvent.VK_A)){
+
+
+                        if(direction!=3){
+
+                            Bullet bu=new Bullet(p[0],p[1],3);
+
+                            if(!finalWorldFrame[bu.p_x()][bu.p_y()].description().equals("a")){
+
+                                Bullet.add(bu);
+
+                                finalWorldFrame[bu.p_x()][bu.p_y()]=Tileset.BULLET;}
+                        }
+
+                    }else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){
+
+
+                        if(direction!=2){
+
+                            Bullet bu=new Bullet(p[0],p[1],2);
+
+                            if(!finalWorldFrame[bu.p_x()][bu.p_y()].description().equals("a")){
+
+                                Bullet.add(bu);
+
+                                finalWorldFrame[bu.p_x()][bu.p_y()]=Tileset.BULLET;}
+                        }else{
+
+                            Bullet bu=new Bullet(p[0],p[1],direction);
+
+                            if(!finalWorldFrame[bu.p_x()][bu.p_y()].description().equals("a")){
+
+                                Bullet.add(bu);
+
+                                finalWorldFrame[bu.p_x()][bu.p_y()]=Tileset.BULLET;}
+
+
+                        }
+
+                    }*/
+
+
+
                 }
+
+
 
             }
 
 
+
             ter.renderFrame(finalWorldFrame);
 
-            //StdDraw.pause(20);
+            i++;
+
+            StdDraw.pause(5);
 
         }
 
@@ -164,62 +284,77 @@ public class Play {
     }
 
 
-    public static void move(char letter) {
-
-        int[] p=W.man_position;
-
-        switch(letter){
-
-            case 'w':
-                if(finalWorldFrame[p[0]][p[1]+1].description().equals("floor")){
-
-                    finalWorldFrame[p[0]][p[1]]= Tileset.FLOOR;
-                    p[1]=p[1]+1;
-                    finalWorldFrame[p[0]][p[1]]=Tileset.PLAYER;
-
-                }
-
-                return;
-
-            case 's':
-                if(finalWorldFrame[p[0]][p[1]-1].description().equals("floor")){
+    public static int move(int direction) {
 
 
-                    finalWorldFrame[p[0]][p[1]]=Tileset.FLOOR;
-
-                    p[1]=p[1]-1;
-
-                    finalWorldFrame[p[0]][p[1]]=Tileset.PLAYER;
-
-                }
-
-                return;
-
-            case 'a':
-                if(finalWorldFrame[p[0]-1][p[1]].description().equals("floor")){
-                    finalWorldFrame[p[0]][p[1]]=Tileset.FLOOR;
-                    p[0]=p[0]-1;
-                    finalWorldFrame[p[0]][p[1]]=Tileset.PLAYER;
-
-                }
-
-                return;
-
-            case 'd':
-
-                if(finalWorldFrame[p[0]+1][p[1]].description().equals("floor")){
-                    finalWorldFrame[p[0]][p[1]]=Tileset.FLOOR;
-                    p[0]=p[0]+1;
-                    finalWorldFrame[p[0]][p[1]]=Tileset.PLAYER;
-                }
-
-                return;
-
-            default:return;
 
 
+        if(StdDraw.isKeyPressed(KeyEvent.VK_W)&&finalWorldFrame[p[0]][p[1]+1].description().equals("floor")){
+
+            j++;
+
+            if(j>=3) {
+
+                finalWorldFrame[p[0]][p[1]] = Tileset.FLOOR;
+                p[1] = p[1] + 1;
+                finalWorldFrame[p[0]][p[1]] = Tileset.PLAYER;
+
+
+
+            }
+
+            return 4;
+
+        }else if(StdDraw.isKeyPressed(KeyEvent.VK_S)&&finalWorldFrame[p[0]][p[1]-1].description().equals("floor")){
+
+            j++;
+
+            if(j>=3) {
+                finalWorldFrame[p[0]][p[1]] = Tileset.FLOOR;
+
+                p[1] = p[1] - 1;
+
+                finalWorldFrame[p[0]][p[1]] = Tileset.PLAYER;
+
+            }
+                return 1;
+
+
+        }else if(StdDraw.isKeyPressed(KeyEvent.VK_A)&&finalWorldFrame[p[0]-1][p[1]].description().equals("floor")){
+
+            j++;
+
+            if(j>=3){
+
+                finalWorldFrame[p[0]][p[1]]=Tileset.FLOOR;
+                p[0]=p[0]-1;
+                finalWorldFrame[p[0]][p[1]]=Tileset.PLAYER;
+
+            }
+
+
+
+            return 3;
+
+        }else if(StdDraw.isKeyPressed(KeyEvent.VK_D)&&finalWorldFrame[p[0]+1][p[1]].description().equals("floor")){
+
+            j++;
+
+            if(j>=3){
+
+                finalWorldFrame[p[0]][p[1]]=Tileset.FLOOR;
+                p[0]=p[0]+1;
+                finalWorldFrame[p[0]][p[1]]=Tileset.PLAYER;
+
+            }
+
+
+            return 2;
         }
 
+        j=0;
+
+        return direction;
     }
 
 }
