@@ -54,6 +54,8 @@ public class Game {
                 if (letter == 'N' || letter == 'n') {
 
                     create_world(finalWorldFrame);
+
+
                     break;
 
                 } else if (letter == 'L' || letter == 'l') {
@@ -79,6 +81,8 @@ public class Game {
 
 
         playing();
+
+        StdDraw.clear();
 
     }
 
