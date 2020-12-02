@@ -25,11 +25,11 @@ public class Percolation {
 
     private boolean percolation=false;
 
-    List<int[]> full_pool=new ArrayList<>();     //each item is an object which is used to be pointed at, all the sites in the same
-                                                // component needs to point at the same object in full_poll
-                                                // in oder to get the isfull status
+    private List<int[]> full_pool=new ArrayList<>();     //each item is an object which is used to be pointed at, all the sites in the same
+                                                         // component needs to point at the same object in full_poll
+                                                         // in oder to get the isfull status
 
-   List<int[]> bottom_pool=new ArrayList<>();
+    private List<int[]> bottom_pool=new ArrayList<>();
 
     public Percolation(int N) {
 
@@ -52,7 +52,7 @@ public class Percolation {
 
     }
 
-    public int to_num(int row, int col){
+    private int to_num(int row, int col){
 
         return row*size+col;
 
@@ -207,11 +207,7 @@ public class Percolation {
 
     }
 
-    public static void main(String[] args){
 
-
-
-    }
 
 
 }

@@ -29,7 +29,7 @@ public class PercolationStats {
 
         private double Mean;
 
-        public double Dev;
+        private double Dev;
 
         List<Double> thresholds;
 
@@ -85,7 +85,7 @@ public class PercolationStats {
         }
 
 
-     public double threshold(){
+     private double threshold(){
 
          pr=pf.make(N);
 

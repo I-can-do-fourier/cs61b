@@ -40,7 +40,7 @@ public class Time_test {
 
     public void test_open() {
 
-        int n =100 ;
+        int n =500 ;
 
         int total = 100000000;
 
@@ -116,6 +116,29 @@ public class Time_test {
         System.out.printf("%.20f\n", t);
 
 
+
+    }
+
+
+    @Test
+
+    public void test_static(){
+
+
+        int total=1000000;
+
+        int n=1000;
+
+        PercolationStats pe=new PercolationStats(n,total/(n*n),new PercolationFactory());
+
+
+        Stopwatch timer=new Stopwatch();
+
+        System.out.println(pe.mean());
+
+        double t = timer.elapsedTime();
+
+        System.out.printf("%.20f\n", t);
 
     }
 

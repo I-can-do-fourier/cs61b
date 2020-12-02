@@ -54,7 +54,7 @@ public class InteractivePercolationVisualizer {
                         StdOut.println(i + " " + j);
                     }
 
-                    Stopwatch timer_open=new Stopwatch();
+                    //Stopwatch timer_open=new Stopwatch();
                     perc.open(i, j);
 
           /*          for(int s=0;s<=100000000;s++){
@@ -67,8 +67,8 @@ public class InteractivePercolationVisualizer {
 
                     }*/
 
-                    double t=timer_open.elapsedTime();
-                    System.out.printf("%.20f\n",t);
+                    //double t=timer_open.elapsedTime();
+                    //System.out.printf("%.20f\n",t);
 
                 }
 
