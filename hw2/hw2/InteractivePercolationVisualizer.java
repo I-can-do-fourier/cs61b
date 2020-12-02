@@ -12,13 +12,14 @@
 package hw2;
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.Stopwatch;
 
 public class InteractivePercolationVisualizer {
-    /*private static final int DELAY = 20;
+    private static final int DELAY = 20;
 
     public static void main(String[] args) {
         // N-by-N percolation system (read from command-line, default = 10)
-        int N = 10;
+        int N =20;
         if (args.length == 1) {
             N = Integer.parseInt(args[0]);
         }
@@ -37,6 +38,8 @@ public class InteractivePercolationVisualizer {
             // detected mouse click
             if (StdDraw.mousePressed()) {
 
+
+
                 // screen coordinates
                 double x = StdDraw.mouseX();
                 double y = StdDraw.mouseY();
@@ -50,7 +53,23 @@ public class InteractivePercolationVisualizer {
                     if (!perc.isOpen(i, j)) {
                         StdOut.println(i + " " + j);
                     }
+
+                    Stopwatch timer_open=new Stopwatch();
                     perc.open(i, j);
+
+          /*          for(int s=0;s<=100000000;s++){
+                        for(int m=0;m<=100000000;m++){
+
+                            int t=i/2/3/4/5/65/5;
+
+                        }
+
+
+                    }*/
+
+                    double t=timer_open.elapsedTime();
+                    System.out.printf("%.20f\n",t);
+
                 }
 
                 // draw N-by-N percolation system
@@ -58,5 +77,5 @@ public class InteractivePercolationVisualizer {
             }
             StdDraw.show(DELAY);
         }
-    }*/
+    }
 }
