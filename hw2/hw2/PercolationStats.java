@@ -31,7 +31,7 @@ public class PercolationStats {
 
         private double Dev;
 
-        List<Double> thresholds;
+        private List<Double> thresholds;
 
     public static void main(String[] args) {
 
@@ -173,7 +173,7 @@ public class PercolationStats {
 
     public double confidenceHigh(){
 
-         stddev();
+         //stddev();
 
          double high=Mean+1.96*Dev/Math.sqrt(T);
 
