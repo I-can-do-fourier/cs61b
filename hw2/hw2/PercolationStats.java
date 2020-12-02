@@ -163,7 +163,7 @@ public class PercolationStats {
 
     public double confidenceLow(){
 
-        stddev();
+        //stddev();
 
          double low=Mean-1.96*Dev/Math.sqrt(T);
 
