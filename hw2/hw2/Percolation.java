@@ -25,8 +25,11 @@ public class Percolation {
 
     private boolean percolation=false;
 
+    List<int[]> full_pool=new ArrayList<>();     //each item is an object which is used to be pointed at, all the sites in the same
+                                                // component needs to point at the same object in full_poll
+                                                // in oder to get the isfull status
 
-   List<int[]> full_poll=new ArrayList<>();
+   List<int[]> bottom_pool=new ArrayList<>();
 
     public Percolation(int N) {
 
@@ -89,6 +92,8 @@ public class Percolation {
                 status_full[pr.find(number)]=status_full[temp]|status_full[parent_prev];
                 status_bottom[pr.find(number)]=status_bottom[temp]|status_bottom[parent_prev];
 
+
+
             }
 
             if(col!=0&&isOpen(row, col-1)){
@@ -127,10 +132,16 @@ public class Percolation {
                 status_bottom[pr.find(number)]=status_bottom[temp]|status_bottom[parent_prev];
             }
 
+        /*    if(isolation==true){
 
-            //status_full[pr.find(number)]=status_full[parent_prev];
+                full_pool.add(new int[]{0});
 
-            //status_bottom[pr.find(number)]=status_bottom[parent_prev];
+                status_full[number]=full_pool.get(full_pool.size()-1);
+
+
+            }
+*/
+
 
             if(row==0){
 
