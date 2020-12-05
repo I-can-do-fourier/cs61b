@@ -1,7 +1,7 @@
 package lab9;
 
-import java.util.Iterator;
-import java.util.Set;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /**
  *  A hash table-backed Map implementation. Provides amortized constant time
@@ -53,19 +53,75 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      */
     @Override
     public V get(K key) {
-        throw new UnsupportedOperationException();
+
+        int code=hash(key);
+
+        return buckets[code].get(key);
+
+
     }
 
     /* Associates the specified value with the specified key in this map. */
     @Override
     public void put(K key, V value) {
-        throw new UnsupportedOperationException();
+
+            if(key==null){
+
+                return;
+
+            }
+
+            int code=hash(key);
+
+
+
+            if(!buckets[code].containsKey(key)){
+
+
+
+                size++;
+
+            }
+
+
+            buckets[code].put(key,value);
+
+
+
+            if(loadFactor()>=MAX_LF){
+
+                    resize();
+
+
+            }
+
+
     }
 
+
+    private void resize(){
+
+
+
+         ArrayMap<K,V>[] temp=new ArrayMap[buckets.length*2];
+
+         for(int i=0;i<buckets.length;i++){
+
+             temp[i]=buckets[i];
+
+         }
+
+         buckets=temp;
+
+
+
+    }
     /* Returns the number of key-value mappings in this map. */
     @Override
     public int size() {
-        throw new UnsupportedOperationException();
+
+        return size;
+
     }
 
     //////////////// EVERYTHING BELOW THIS LINE IS OPTIONAL ////////////////
@@ -73,7 +129,22 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     /* Returns a Set view of the keys contained in this map. */
     @Override
     public Set<K> keySet() {
-        throw new UnsupportedOperationException();
+
+        Set<K> keys=new HashSet<>();
+
+        for(ArrayMap i:buckets){
+
+            if(i.size>0){
+
+                keys.addAll(i.keySet());
+
+
+            }
+
+        }
+
+        return keys;
+
     }
 
     /* Removes the mapping for the specified key from this map if exists.
@@ -94,6 +165,44 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
 
     @Override
     public Iterator<K> iterator() {
-        throw new UnsupportedOperationException();
+
+
+
+                return keySet().iterator();
     }
+
+
+
+    /*private  class myiterator<K> implements Iterator<K>{
+
+
+
+
+        private  K[] keys = MyHashMap.this.keySet().toArray((K[]) new Object[MyHashMap.this.size()]);
+
+        private int position=0;
+
+        private int size=keys.length;
+
+        @Override
+        public boolean hasNext() {
+
+
+            return position<size;
+        }
+
+        @Override
+        public K next() {
+
+            K temp= keys[position];
+
+            position++;
+            return  temp;
+        }
+
+
+
+    }
+*/
+
 }
