@@ -101,21 +101,29 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
 
     private void resize(){
 
+         ArrayMap<K,V>[] temp=buckets;
 
+         buckets=new ArrayMap[temp.length*2];
 
-         ArrayMap<K,V>[] temp=new ArrayMap[buckets.length*2];
+        for (int i = 0; i < this.buckets.length; i += 1) {
+            this.buckets[i] = new ArrayMap<>();
+        }
 
-         for(int i=0;i<buckets.length;i++){
+         for(ArrayMap ar:temp){
 
-             temp[i]=buckets[i];
+             for(Object i:ar){
+
+                 int code=hash((K) i);
+
+                 buckets[code].put((K) i,(V) ar.get(i));
+
+             }
 
          }
 
-         buckets=temp;
-
-
 
     }
+
     /* Returns the number of key-value mappings in this map. */
     @Override
     public int size() {
