@@ -202,7 +202,6 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
             return 0;
         }
 
-        count++;
 
         if(p.left!=null){
 
@@ -244,13 +243,13 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
 
     private Node remove_reshape(Node p){
 
-       switch (size(p)){
+       switch (num_children(p)){
 
 
-           case 1:
+           case 0:
                return null;
 
-           case 2:
+           case 1:
 
                if(p.left!=null){
 
