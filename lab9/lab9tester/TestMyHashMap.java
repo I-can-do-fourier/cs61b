@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import lab9.MyHashMap;
 
+import java.util.Arrays;
+
 /**
  * Tests by Brendan Hu, Spring 2015, revised for 2018 by Josh Hug
  */
@@ -127,7 +129,55 @@ public class TestMyHashMap {
         assertEquals(studentIDs.get("evil alan"), studentIDs.get("alan"));
     }
 
-    public static void main(String[] args) {
+
+    @Test
+
+    public void keySetTest() {
+
+        MyHashMap<String, Integer> d = new MyHashMap<>();
+
+        String[] data = {"apple", "banana", "beijing", "canada","shenzhen", "tianjin", "tokyo"};
+
+        for (int i = 0; i < data.length; i++) {
+
+            d.put(data[i], i);
+
+        }
+
+
+        String[] keys = d.keySet().toArray(new String[d.size()]);
+
+        Arrays.sort(keys);
+
+        assertEquals(data, keys);
+
+    }
+
+
+
+    @Test
+
+    public void iteratorTest(){
+
+        MyHashMap<String, Integer> d = new MyHashMap<>();
+
+        String[] data = {"apple", "banana", "beijing", "canada","shenzhen", "tianjin", "tokyo"};
+
+        for (int i = 0; i < data.length; i++) {
+
+            d.put(data[i], i);
+
+        }
+
+        for(String i:d){
+
+            System.out.println(i);
+
+        }
+
+    }
+
+    public static void main(String[] args){
         jh61b.junit.TestRunner.runTests(TestMyHashMap.class);
     }
 }

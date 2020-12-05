@@ -2,6 +2,8 @@ package lab9tester;
 
 import static org.junit.Assert.*;
 
+import edu.princeton.cs.algs4.BST;
+import edu.princeton.cs.algs4.In;
 import org.junit.Test;
 import lab9.BSTMap;
 
@@ -47,6 +49,7 @@ public class TestBSTMap {
         BSTMap<String, Integer> b = new BSTMap<String, Integer>();
         assertFalse(b.containsKey("waterYouDoingHere"));
         b.put("waterYouDoingHere", 0);
+        //b.put("waterYouDoingHere1", 1);
         assertTrue(b.containsKey("waterYouDoingHere"));
     }
 
@@ -84,6 +87,64 @@ public class TestBSTMap {
         b.put("hi", 1);
         assertTrue(b.containsKey("hi"));
         assertTrue(b.get("hi") != null);
+    }
+
+
+    @Test
+    public void keySetTest(){
+
+        BSTMap<String, Integer> b = new BSTMap<>();
+
+        b.put("my", 1);
+        b.put("name", 1);
+        b.put("is", 1);
+        b.put("hxh", 1);
+        b.put("superman",1);
+
+        System.out.println(b.keySet().toString());
+
+    }
+
+
+
+    @Test
+    public void removeTest(){
+
+        BSTMap<String, Integer> b = new BSTMap<>();
+
+        b.put("my", 1);
+        b.put("name", 2);
+        b.put("is", 3);
+        b.put("hxh", 4);
+        b.put("but",5);
+        b.put("i",6);
+        b.put("can not",7);
+        b.put("save",8);
+        b.put("the world",9);
+        b.put("superman",10);
+
+        int x=b.remove("is");
+
+        System.out.println(x);
+        System.out.println(b.keySet().toString());
+
+        b.remove("34");
+        //System.out.println(x);
+        System.out.println(b.keySet().toString());
+        System.out.println(b.remove("my"));
+        System.out.println(b.keySet().toString());
+
+
+
+    }
+
+    @Test
+    public void BSTtest(){
+
+        BST<String, Integer>b = new BST<>();
+        b.put("fuck",0);
+        b.put("you",1);
+        b.put("deep night",3);
     }
 
     public static void main(String[] args) {
