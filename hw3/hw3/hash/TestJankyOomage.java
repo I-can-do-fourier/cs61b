@@ -23,7 +23,7 @@ public class TestJankyOomage {
 
         public static JankyOomage randomJankyOomage() {
             JankyOomage x = new JankyOomage();
-            x.val = StdRandom.uniform(0, 2);
+            x.val = StdRandom.uniform(0, 1000000);
             return x;
         }
 
