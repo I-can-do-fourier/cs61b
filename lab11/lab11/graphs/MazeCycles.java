@@ -34,7 +34,7 @@ public class MazeCycles extends MazeExplorer {
         maze = m;
 
         edgeto_temp=new int[maze.V()];
-        s = 34;
+        s = 0;
         t = maze.V()-1;
         //distTo[s] = 0;
         edgeTo[s] = s;
@@ -73,6 +73,10 @@ public class MazeCycles extends MazeExplorer {
 
                     distTo[i]=i;
 
+                    announce();
+
+                    break;
+
                 }else if(marked[i]&&(i==edgeto_temp[p]||p==edgeto_temp[i])){/**找到cycle的位置一定不再父亲和儿子
                                                                               （虽然父类和儿子可以在cycle中）**/
 
@@ -89,15 +93,15 @@ public class MazeCycles extends MazeExplorer {
                     circleSide=i;
 
 
-                    int temp=edgeto_temp[circleSide];
+                    //int temp=edgeto_temp[circleSide];
 
-                    edgeto_temp[temp]=circleSide;
+                    //edgeto_temp[temp]=circleSide;
 
                     break;
 
                 }
 
-                announce();
+
 
             }
 
