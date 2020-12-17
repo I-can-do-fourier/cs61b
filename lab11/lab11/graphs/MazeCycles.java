@@ -34,7 +34,7 @@ public class MazeCycles extends MazeExplorer {
         maze = m;
 
         edgeto_temp=new int[maze.V()];
-        s = 0;
+        s = 80;
         t = maze.V()-1;
         //distTo[s] = 0;
         edgeTo[s] = s;

@@ -5,11 +5,13 @@ import java.util.HashSet;
 
 import edu.princeton.cs.introcs.In;
 
-public class Word implements WorldState {
+public class Word implements WorldState{
     private static Set<String> words;
     private static final String WORDFILE = "input/words10000.txt";
     private final String word;
     private final String goal;
+    private int DistanceToStart=0;
+    //private final String start;
 
     /**
      * Reads the wordfile specified by the wordfile variable.
@@ -70,6 +72,32 @@ public class Word implements WorldState {
         return costs[b.length()];
     }
 
+/*    public void estimatedDistanceToStart(String a){
+
+
+            DistanceToStart=editDistance(a,word);
+
+    }
+
+    @Override
+    public void Set_DistanceToStart(int distance){
+
+
+        DistanceToStart=distance;
+
+    }
+
+    @Override
+
+    public int Get_DistanceToStart(){
+
+
+            //DistanceToStart=distance;
+
+            return DistanceToStart;
+
+    }*/
+
 
     @Override
     public Iterable<WorldState> neighbors() {
@@ -81,6 +109,10 @@ public class Word implements WorldState {
         }
         return neighbs;
     }
+
+
+
+
 
     @Override
     public int estimatedDistanceToGoal() {
@@ -115,4 +147,29 @@ public class Word implements WorldState {
         result = 31 * result + (goal != null ? goal.hashCode() : 0);
         return result;
     }
+
+    /*@Override
+    public int compareTo(Object o) {
+
+        if(o==null){
+
+            return 1;
+
+        }
+
+        if(this.getClass()!=o.getClass()){
+
+            return 1;
+
+        }
+
+        Word other= (Word) o;
+
+        return (this.DistanceToStart+this.estimatedDistanceToGoal()-other.DistanceToStart-other.estimatedDistanceToGoal());
+
+
+
+
+
+    }*/
 }

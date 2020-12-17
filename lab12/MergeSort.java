@@ -1,4 +1,8 @@
 import edu.princeton.cs.algs4.Queue;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.LinkedList;
 
 public class MergeSort {
     /**
@@ -34,8 +38,20 @@ public class MergeSort {
     /** Returns a queue of queues that each contain one item from items. */
     private static <Item extends Comparable> Queue<Queue<Item>>
             makeSingleItemQueues(Queue<Item> items) {
-        // Your code here!
-        return null;
+
+        Queue<Queue<Item>> singleItems= new Queue<>();
+
+        for(Item i : items){
+
+            Queue<Item> single=new Queue<>();
+
+            single.enqueue(i);
+
+            singleItems.enqueue(single);
+
+        }
+
+        return singleItems;
     }
 
     /**
@@ -53,14 +69,115 @@ public class MergeSort {
      */
     private static <Item extends Comparable> Queue<Item> mergeSortedQueues(
             Queue<Item> q1, Queue<Item> q2) {
-        // Your code here!
-        return null;
+
+              Queue<Item> sorted= new Queue<>();
+
+        /*while(true){
+
+            Item a=null;
+
+            Item b=null;
+
+
+
+            if(!q1.isEmpty()){
+
+                a=q1.peek();
+            }
+
+            if(!q2.isEmpty()){
+
+                b=q2.peek();
+
+
+
+            }
+
+            if(a!=null){
+
+                int compare=a.compareTo(b);
+
+                Item item;
+
+                if(compare>=0){
+
+                    item = q1.dequeue();
+
+                }else{
+
+                    item = q2.dequeue();
+
+                }
+
+                sorted.enqueue(item);
+
+
+            }else if(b!=null){
+
+                Item item=q2.dequeue();
+                sorted.enqueue(item);
+
+
+            }else{
+
+
+                break;
+
+            }
+
+        }*/
+
+        while(!(q1.isEmpty()&&q2.isEmpty())){
+
+
+                Item temp=getMin(q1,q2);
+
+                sorted.enqueue(temp);
+        }
+
+        return sorted;
     }
 
     /** Returns a Queue that contains the given items sorted from least to greatest. */
     public static <Item extends Comparable> Queue<Item> mergeSort(
             Queue<Item> items) {
-        // Your code here!
-        return items;
+            Queue<Queue<Item>> crazy_loop=makeSingleItemQueues(items);
+
+            while(crazy_loop.size()>1){
+                 Queue<Item> a=crazy_loop.dequeue();
+
+                 Queue<Item> b=crazy_loop.dequeue();
+
+                 Queue<Item> c=mergeSortedQueues(a,b);
+
+                 crazy_loop.enqueue(c);
+            }
+
+
+
+        return crazy_loop.dequeue();
+    }
+
+    @Test
+    public static void main(String[] args) {
+
+        Queue<String> test= new Queue<String>();
+
+        test.enqueue("hxh");
+        test.enqueue("byt");
+        test.enqueue("lby");
+        test.enqueue("yzs");
+        test.enqueue("zk");
+        test.enqueue("hjq");
+        test.enqueue("ltl");
+
+
+        Queue<String> returned=mergeSort(test);
+
+        System.out.println(test.toString());
+        System.out.println(returned.toString());
+
+        //Assert.assertEquals(test,returned);
+
     }
 }

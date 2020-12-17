@@ -1,5 +1,7 @@
 import edu.princeton.cs.algs4.Queue;
 
+import java.awt.*;
+
 public class QuickSort {
     /**
      * Returns a new queue that contains the given queues catenated together.
@@ -47,13 +49,82 @@ public class QuickSort {
     private static <Item extends Comparable> void partition(
             Queue<Item> unsorted, Item pivot,
             Queue<Item> less, Queue<Item> equal, Queue<Item> greater) {
-        // Your code here!
+
+            for(Item i:unsorted){
+
+                int compare=i.compareTo(pivot);
+
+                if(compare>0){
+
+                    greater.enqueue(i);
+
+                }else if(compare<0){
+
+                    less.enqueue(i);
+
+
+                }else {
+
+
+                    equal.enqueue(i);
+
+                }
+
+
+            }
     }
 
     /** Returns a Queue that contains the given items sorted from least to greatest. */
     public static <Item extends Comparable> Queue<Item> quickSort(
             Queue<Item> items) {
-        // Your code here!
-        return items;
+
+
+
+
+        if(items.size()<=1){
+
+
+            return items;
+
+        }
+
+        Item pivot=getRandomItem(items);
+        Queue<Item> less=new Queue<>();
+        Queue<Item> equal=new Queue<>();
+        Queue<Item> greater=new Queue<>();
+
+        partition(items,pivot,less,equal,greater);
+
+        less=quickSort(less);
+        greater=
+                quickSort(greater);
+
+
+        Queue<Item> c1=catenate(catenate(less,equal),greater);
+
+
+        return c1;
+    }
+
+
+    public static void main(String[] args) {
+
+        Queue<String> test= new Queue<String>();
+
+        test.enqueue("hxh");
+        test.enqueue("byt");
+        test.enqueue("lby");
+        test.enqueue("yzs");
+        test.enqueue("zk");
+        test.enqueue("hjq");
+        test.enqueue("ltl");
+
+
+        Queue<String> returned=quickSort(test);
+
+        System.out.println(test.toString());
+        System.out.println(returned.toString());
+
+
     }
 }
