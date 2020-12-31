@@ -15,9 +15,59 @@ public class RadixSort {
      *
      * @return String[] the sorted array
      */
+
+
+    private static String[] padded;
+
     public static String[] sort(String[] asciis) {
+
+        padded=new String[asciis.length];
+
+        int length_max=0;
+
+        for(String i:asciis){
+
+            if(i.length()>length_max){
+
+                length_max=i.length();
+
+            }
+
+        }
+
+        //pad the Strings
+
+        for(int i=0;i<padded.length;i++){
+
+            int pad_num=length_max-asciis[i].length();
+
+            padded[i]=asciis[i]+" ".repeat(pad_num);
+
+
+        }
+
+
+        String[] sorted=new String[asciis.length];
+
+        for(int i=0;i<asciis.length;i++){
+
+            sorted[i]=asciis[i];
+
+        }
+
+        int index=length_max-1;
+
+        while(index>=0){
+
+            sortHelperLSD(sorted,index);
+
+            index--;
+
+        }
+
+
         // TODO: Implement LSD Sort
-        return null;
+        return sorted;
     }
 
     /**
@@ -28,7 +78,69 @@ public class RadixSort {
      */
     private static void sortHelperLSD(String[] asciis, int index) {
         // Optional LSD helper method for required LSD radix sort
+
+        if(index<0){
+
+            return;
+
+        }
+
+        int[] counting=new int[256];
+
+        int[] pos=new int[256];
+
+        String[] pad_temp=new String[padded.length];
+        String[] sorted=new String[asciis.length];
+
+        for(int i=0;i<asciis.length;i++){
+
+            sorted[i]=asciis[i];
+
+        }
+
+        for(String s:padded){
+
+            int value=s.charAt(index);
+            counting[value]++;
+
+        }
+
+        int position=0;
+
+        for(int i=0;i<pos.length;i++){
+
+            pos[i]=position;
+
+            position=position+counting[i];
+
+
+        }
+
+        for(int i=0;i<padded.length;i++){
+
+             int item=padded[i].charAt(index);
+
+             int put=pos[item];
+
+             asciis[put]=sorted[i];
+             pad_temp[put]=padded[i];
+
+             pos[item]++;
+
+
+        }
+
+        //asciis=sorted;
+        padded=pad_temp;
+
+
         return;
+    }
+
+    private String[] counting_sort(String[] as,int index){
+
+        return null;
+
     }
 
     /**
