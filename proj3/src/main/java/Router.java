@@ -1,5 +1,5 @@
-import java.util.List;
-import java.util.Objects;
+import javax.print.attribute.HashPrintJobAttributeSet;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,9 +23,146 @@ public class Router {
      * @param destlat The latitude of the destination location.
      * @return A list of node id's in the order visited on the shortest path.
      */
+
+    private static Map<Long,Long> edgeTo;
+    private static Map<Long,Boolean> marked;
+
+    private static Map<Long,Double> disTos;
+    private static Map<Long,Double> disTot;
+    private  static PriorityQueue<Long> fringe;
+
+
+    //private static double dlon;
+    //private static double dlat;
+    private static GraphDB graph;
+    //private static Map<Long,double[]> nodes;
+    private static long start;
+    private static long end;
+
+
     public static List<Long> shortestPath(GraphDB g, double stlon, double stlat,
                                           double destlon, double destlat) {
-        return null; // FIXME
+
+                //graph.distance(nodes.get(o1)[0],nodes.get(o1)[1],dlon,dlat);
+
+               edgeTo=new HashMap<>();
+               marked=new HashMap<>();
+
+
+               disTos=new HashMap<>();
+               disTot=new HashMap<>();
+
+
+                graph=g;
+                //nodes=g.getNodes();
+                //dlon=destlon;
+                //dlat=destlat;
+
+                start=graph.closest(stlon,stlat);
+                end=graph.closest(destlon,destlat);
+
+
+                edgeTo.put(start,start);
+                disTos.put(start,0.0);
+                disTot.put(start,graph.distance(start,end));
+
+
+                find();
+
+
+                LinkedList<Long> path=new LinkedList<>();
+
+                Long node=end;
+
+                while(true){
+
+
+
+                    path.addFirst(node);
+
+                    if(node==start){
+
+                        break;
+
+                    }
+
+                    node=edgeTo.get(node);
+
+
+
+
+
+                }
+
+
+
+        return path; // FIXME
+    }
+
+
+    private static void find(){
+
+        fringe=new PriorityQueue(new compare_distance());
+
+        fringe.add(start);
+
+
+        while(!fringe.isEmpty()) {
+
+
+            long node = fringe.poll();
+
+            if (node == end) {
+
+                return;
+            }
+
+            if (marked.containsKey(node)&&marked.get(node)) {
+
+                continue;
+            }
+
+            marked.put(node,true);
+
+            double d_ns=disTos.get(node);
+
+            for (long i:graph.adjacent(node)){
+
+                double d_ni=graph.distance(node,i);
+
+                 if(!disTot.containsKey(i)){
+
+                     disTot.put(i,graph.distance(i,end));
+
+
+                 }
+
+                 if(!disTos.containsKey(i)||d_ni+d_ns<disTos.get(i)){
+
+
+                     disTos.put(i,d_ni+d_ns);
+
+                     fringe.add(i);
+
+                     edgeTo.put(i,node);
+
+                     if(marked.containsKey(i)&&marked.get(i)){
+
+                         marked.put(i,false);
+
+                     }
+
+
+
+                 }
+
+
+            }
+
+        }
+
+
+
     }
 
     /**
@@ -37,7 +174,68 @@ public class Router {
      * route.
      */
     public static List<NavigationDirection> routeDirections(GraphDB g, List<Long> route) {
-        return null; // FIXME
+
+        Map<Long,List<String>> name_way=g.name_way;
+
+        List<NavigationDirection> directions= new LinkedList<>();
+
+        List<Long> nodes=new ArrayList<>();
+
+        for(long node:route){
+
+            nodes.add(node);
+
+        }
+
+        boolean start_direction=true;
+
+        int state=1;//0:no not accumulate distance  1:accumulate distance
+
+        long prevNode= nodes.remove(0);
+        long node= nodes.remove(0);
+
+
+        String instruction="Start on"+" "+ (g.name_way.get(prevNode)).get(0) +" "+"for"+" ";
+
+        double accumulated_dis=g.distance(node,prevNode);
+
+        prevNode=node;
+
+        while(!nodes.isEmpty()){
+
+            node=nodes.remove(0);
+
+            double bear=g.bearing(prevNode,node);
+
+
+            if((-15<=bear)&&(bear<=15)){
+
+                accumulated_dis=accumulated_dis+g.distance(node,prevNode);
+
+            }else {
+
+
+                    instruction=instruction+accumulated_dis+" "+"miles";
+
+                    //start_direction=false;
+
+
+                directions.add(NavigationDirection.fromString(instruction));
+
+                accumulated_dis=0;
+
+                instruction="Turn left"+" "+"on"+" "+(g.name_way.get(node)).get(0)+" "+"for"+" ";
+
+
+
+            }
+
+            prevNode=node;
+
+
+        }
+
+        return directions;
     }
 
 
@@ -160,4 +358,34 @@ public class Router {
             return Objects.hash(direction, way, distance);
         }
     }
+
+
+    private static class compare_distance implements Comparator<Long>{
+
+
+        @Override
+        public int compare(Long o1, Long o2) {
+
+            double d1=disTos.get(o1)+disTot.get(o1);
+            double d2=disTos.get(o2)+disTot.get(o2);
+
+            if(d1<d2){
+
+                    return -1;
+
+            }else if(d1>d2){
+
+
+                return 1;
+
+            }
+
+            return 0;
+
+        }
+    }
+
+
+
+
 }
